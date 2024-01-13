@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  
+  factory:
+    container_name: factory
+    build:
+      context: ./Dockerfiles
+      dockerfile: backbone.Dockerfile
+    entrypoint: ["django-admin", "startproject"]
+    volumes:
+      - ./Project:/app
+  
+
+
+  server:
+    container_name: django_server
+    build:
+      context: ./Dockerfiles
+      dockerfile: backbone.Dockerfile
+    volumes:
+      - ./Project:/app
+    ports:
+      - "8000:8000"
+      
